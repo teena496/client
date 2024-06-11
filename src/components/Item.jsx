@@ -7,7 +7,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { addToCart } from "../state";
 
-export const Item = ({ item, width }) => {
+const Item = ({ item, width }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -28,14 +28,12 @@ export const Item = ({ item, width }) => {
   } = image;
 
   return (
-    <Box width={width} sx={{ background: "red" }}>
-      Outer
+    <Box width={width}>
       <Box
         position="relative"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
-        Box
         <img
           alt={item.name}
           width="300px"
@@ -45,23 +43,19 @@ export const Item = ({ item, width }) => {
           style={{ cursor: "pointer" }}
         />
         <Box
-          display={isHovered ? "blocked" : "none"}
+          display={isHovered ? "block" : "none"}
           position="absolute"
           bottom="10%"
           left="0"
           width="100%"
           padding="0 5%"
-          sx={{ background: "green" }}
         >
-          InnerBOx
           <Box
             display="flex"
             alignItems="center"
             backgroundColor={shades.neutral[100]}
             borderRadius="3px"
-            sx={{ background: "blue" }}
           >
-            Inner Inner Box
             <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
               <RemoveIcon />
             </IconButton>
@@ -90,3 +84,5 @@ export const Item = ({ item, width }) => {
     </Box>
   );
 };
+
+export default Item;
