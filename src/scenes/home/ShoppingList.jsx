@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  console.log("🚀 ~ ShoppingList ~ items:", items);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

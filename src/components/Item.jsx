@@ -16,7 +16,8 @@ const Item = ({ item, width }) => {
   const {
     palette: { neutral },
   } = useTheme();
-  const { category, price, name, image } = item.attributes;
+
+  const { category, price, Name, image } = item.attributes;
   const {
     data: {
       attributes: {
@@ -50,35 +51,37 @@ const Item = ({ item, width }) => {
           width="100%"
           padding="0 5%"
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            backgroundColor={shades.neutral[100]}
-            borderRadius="3px"
-          >
-            <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
-              <RemoveIcon />
-            </IconButton>
-            <Typography>{item.count}</Typography>
-            <IconButton onClick={() => setCount(count + 1)}>
-              <AddIcon />
-            </IconButton>
+          <Box display="flex" justifyContent="space-between">
+            <Box
+              display="flex"
+              alignItems="center"
+              backgroundColor={shades.neutral[100]}
+              borderRadius="3px"
+            >
+              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
+                <RemoveIcon />
+              </IconButton>
+              <Typography color={shades.primary[300]}>{count}</Typography>
+              <IconButton onClick={() => setCount(count + 1)}>
+                <AddIcon />
+              </IconButton>
+            </Box>
+            <Button
+              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
+              sx={{ backgroundColor: shades.primary[300], color: "white" }}
+            >
+              ADD TO CART
+            </Button>
           </Box>
-          <Button
-            onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
-            sx={{ backgroundColor: shades.primary[300], color: "white" }}
-          >
-            ADD TO CART
-          </Button>
         </Box>
       </Box>
       <Box mt="3px">
         <Typography variant="subtitle2" color={neutral.dark}>
           {category
-            .replace(/[A-Z]/g, " $1")
+            .replace(/([A-Z])/g, " $1")
             .replace(/^./, (str) => str.toUpperCase())}
         </Typography>
-        <Typography>{name}</Typography>
+        <Typography>{Name}</Typography>
         <Typography fontWeight="bold">${price}</Typography>
       </Box>
     </Box>
