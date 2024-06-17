@@ -67,7 +67,7 @@ const Item = ({ item, width }) => {
               </IconButton>
             </Box>
             <Button
-              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
+              onClick={() => dispatch(addToCart({ ...item, count }))}
               sx={{ backgroundColor: shades.primary[300], color: "white" }}
             >
               ADD TO CART

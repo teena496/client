@@ -22,6 +22,7 @@ const ShoppingList = () => {
     const itemsJson = await items.json();
     dispatch(setItems(itemsJson.data));
   }
+  
   useEffect(() => {
     getItems();
   }, []);

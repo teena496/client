@@ -31,6 +31,14 @@ const CartMenu = () => {
     return total + item.count * item.attributes.price;
   }, 0);
 
+  // const mappedCart = new Map();
+  // cart.forEach((x) => {
+  //   if (mappedCart.has(x.id)) {
+  //     mappedCart.values.count++;
+  //   } else {
+  //     mappedCart.set({ id: x.id, item: x });
+  //   }
+  // });
   return (
     <Box /* OVERLAY */
       display={isCartOpen ? "block" : "none"}
@@ -63,20 +71,20 @@ const CartMenu = () => {
           {/* CART LIST */}
           <Box>
             {cart.map((item) => (
-              <Box key={`${item.attributes.name}-${item.id}`}>
+              <Box key={`${item.attributes.Name}-${item.id}`}>
                 <FlexBox p="15px 0">
                   <Box flex="1 1 40%">
                     <img
-                      alt={item?.name}
+                      alt={item?.attributes?.Name}
                       width="123px"
                       height="164px"
-                      src={`http://localhost:1337/${item.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      src={`http://localhost:1337${item.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Box>
                   <Box flex="1 1 60%">
                     <FlexBox mb="5px">
                       <Typography fontWeight="bold">
-                        {item.attributes.name}
+                        {item.attributes.Name}
                       </Typography>
                       <IconButton
                         onClick={() =>
@@ -87,7 +95,7 @@ const CartMenu = () => {
                       </IconButton>
                     </FlexBox>
                     <Typography>
-                      {ItemDetails.attributes.shortDescription}
+                      {item?.attributes?.shortDescription[0].children[0].text}
                     </Typography>
                     {/* AMOUNT */}
 
